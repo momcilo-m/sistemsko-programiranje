@@ -108,7 +108,7 @@ namespace OpenMeteo.Services
 
             var url =$"https://air-quality-api.open-meteo.com/v1/air-quality?latitude={latitude}&longitude={longitude}&hourly=pm10,pm2_5,carbon_monoxide,nitrogen_dioxide&start_date={start}&end_date={end}";
 
-            httpClient.DefaultRequestHeaders.Add("User-Agent", "ReactiveNewsServer/1.0");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", "AirQualityServer");
 
             var json = await httpClient.GetStringAsync(url);
             var apiResponse = JsonSerializer.Deserialize<AirQuality>(json);

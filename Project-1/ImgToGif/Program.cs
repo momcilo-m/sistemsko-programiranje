@@ -89,8 +89,6 @@ namespace Img2Gif
             {
                 using Image<Rgba32> original = Image.Load<Rgba32>(fullPath);
                 Image<Rgba32> gif;
-
-                bool busy = IsThreadPoolBusy();
                
                 gif = MultiThreadGif(original);
 
@@ -162,15 +160,6 @@ namespace Img2Gif
             gifMetaData.RepeatCount = 0;
 
             return gif;
-        }
-
-        static bool IsThreadPoolBusy()
-        {
-            ThreadPool.GetAvailableThreads(out int availableThreads, out _);
-            ThreadPool.GetMaxThreads(out int maxThreads, out _);
-
-            double loadFactor = 1.0 - (double)availableThreads / maxThreads;
-            return loadFactor > 0.8;
         }
     } 
 }
